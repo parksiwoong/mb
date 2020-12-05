@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mb.mappers.ProductMapper"><!--   어떤 멥퍼에 대한 쿼리문 -->
+    <!--  이거 설정방법  mybatis dtd-->
+    <select id="selectProducts" resultType="product">    #  id에는 메서드이름과 result엔 얼라이엇에 들어가는 이름
+    SELECT `product_index` AS `productIndex`,
+           `product_name`  AS `productName`,
+           `product_price` AS `productPrice`
+    FROM `mybatis`.`products`
+
+
+    </select>
+    <select id="seletProduct" resultType="product">
+        SELECT `product_index` AS `productIndex`,
+               `product_name`  AS `productName`,
+               `product_price` AS `productPrice`
+        FROM `mybatis`.`products`
+        WHERE `product_index` = #{productIndex}
+
+    </select>
+    <insert id="insertColorProduct">
+        INSERT INTO `mybatis`.`products_color`(`product_name`, `product_color`)
+        values (#{productName},#{productColor})
+    </insert>
+    <insert id="insertProduct">
+        INSERT INTO `mybatis`.`products` (`product_name`, `product_price`)
+        VALUES (#{productName}, #{productPrice})
+    </insert>
+
+    <delete id="deleteProduct">
+        DELETE
+        FROM `mybatis`.`products`
+        WHERE `product_index` = #{productIndex}
+    </delete>
+
+    <update id="updateProduct">
+        UPDATE `mybatis`.`products`
+        SET `product_name`  = #{productName},
+            `product_price` = #{productPrice}
+        WHERE `product_index` = #{productIndex}
+    </update>
+</mapper>
